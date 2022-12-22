@@ -21,11 +21,13 @@ class _HomeState extends State<Home>{
   var _pages = [DistributionIndexPage(), HistoryPage(), NotifyPage(), RefundPage()];
   var _labels = ["PHÂN PHỐI", "LỊCH SỬ", "THÔNG BÁO","TRẢ HÀNG"];
   var _currentLabel;
+  var home_icon_state = true;
 
   void _changePage( index ){
     setState(() {
       _is_selected = true;
       _currentIndex = index;
+      home_icon_state = false;
       _currentPage = _pages[index];
       _currentLabel = _labels[index];
     });
@@ -88,9 +90,10 @@ class _HomeState extends State<Home>{
             _currentPage = WelcomePage();
             _currentLabel = "WELCOME";
             _is_selected = false;
+            home_icon_state = true;
           });
         },
-        child: Icon(Icons.home_outlined, color: Colors.white),
+        child: Icon(Icons.home_outlined, color: home_icon_state? Colors.white : Colors.grey),
         backgroundColor: Color.fromRGBO(32,34,52,1),
       ),
 
@@ -112,7 +115,12 @@ class _HomeState extends State<Home>{
                     Container(
                         child: Container(
                             margin: EdgeInsets.all(8.0),
-                            child: Icon(Icons.qr_code, color: Colors.white)
+                            child: InkWell(
+                              onTap: (){
+
+                              },
+                              child: Icon(Icons.qr_code, color: Colors.white)
+                            )
                         )
                     ),
                     Expanded(

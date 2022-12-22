@@ -60,7 +60,7 @@ class _AccountState extends State<Account>{
                     width: 125, height: 125,
                     margin: EdgeInsets.all(36),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('/images/avatar.jpg'),
+                      backgroundImage: AssetImage('assets/images/avatar.jpg'),
                     )
                 ),
 

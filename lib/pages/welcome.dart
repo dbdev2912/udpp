@@ -10,7 +10,7 @@ class WelcomePage extends StatelessWidget{
             color: Color.fromRGBO(32, 34, 53, 1),
           ),
           child: Center(
-            child: Text("Welcome to the sommonors' rift", style: TextStyle(color: Colors.white)),
+            child: Text("Welcome to the summonors' rift", style: TextStyle(color: Colors.white)),
           )
       ),
     );

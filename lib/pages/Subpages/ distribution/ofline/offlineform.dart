@@ -58,11 +58,11 @@ class _OfflineFormState extends State<OfflineForm>{
                         Container(
                             child: InkWell(
                               onTap: (){
-                                Navigator.pop(context);
+                                // Navigator.pop(context);
                               },
                               child: Container(
                                   margin: EdgeInsets.all(8.0),
-                                  child: Icon(Icons.qr_code, color: Colors.white)
+                                  child: Icon(Icons.qr_code, color: Colors.transparent)
                               ),
                             )
                         ),

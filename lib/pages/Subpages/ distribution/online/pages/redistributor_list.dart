@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
 
-class Tier1 extends StatefulWidget{
-  const Tier1({ Key? key }):super(key:key);
+class RedistributorList extends StatefulWidget{
+  const RedistributorList({ Key? key }):super(key:key);
   @override
-  _Tier1State createState() => _Tier1State();
+  _RedistributorListState createState() => _RedistributorListState();
 }
 
-class _Tier1State extends State<Tier1>{
+class _RedistributorListState extends State<RedistributorList>{
+
+  final search_controller = TextEditingController();
+
+  List<dynamic> data = [
+    {"id": "0", "name": "ALY - Nhà phân phối cấp 1"},
+    {"id": "1", "name": "Agrmex Nghệ An"},
+    {"id": "2", "name": "An Giang (Cambodia) Plan Protection Co.,Ltd"},
+    {"id": "3", "name": "Anh Thái"},
+    {"id": "4", "name": "Ban QLDA Nhà máy Alumina Nhân cơ - Vinacomin"},
+    {"id": "5", "name": "Ban QLDA Xây dụng công trình Giao thông Cà Mau"},
+    {"id": "0", "name": "ALY - Nhà phân phối cấp 1"},
+    {"id": "1", "name": "Agrmex Nghệ An"},
+    {"id": "2", "name": "An Giang (Cambodia) Plan Protection Co.,Ltd"},
+    {"id": "3", "name": "Anh Thái"},
+    {"id": "4", "name": "Ban QLDA Nhà máy Alumina Nhân cơ - Vinacomin"},
+    {"id": "5", "name": "Ban QLDA Xây dụng công trình Giao thông Cà Mau"},
+  ];
+
   @override
   Widget build( BuildContext context ){
     return Scaffold(
@@ -34,7 +52,7 @@ class _Tier1State extends State<Tier1>{
                         ),
                         Expanded(
                             child: Text(
-                              "PHÂN PHỐI CẤP 1",
+                              "NHÀ PHÂN PHỐI CẤP 1",
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.white, fontSize: 18),
                             )
@@ -46,12 +64,23 @@ class _Tier1State extends State<Tier1>{
                               },
                               child: Container(
                                   margin: EdgeInsets.all(8.0),
-                                  child: Icon(Icons.qr_code, color: Colors.white)
+                                  child: Icon(Icons.qr_code, color: Colors.transparent)
                               ),
                             )
                         ),
                       ],
                     )
+                ),
+                Container(
+                  child: TextFormField(
+                    controller: search_controller,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.search_rounded, color: Colors.white30),
+                      hintText: "Tìm kiếm",
+                      hintStyle: TextStyle( color: Colors.white30 )
+                    ),
+                  )
                 ),
 
                 Expanded(
@@ -61,13 +90,41 @@ class _Tier1State extends State<Tier1>{
                           color: Color.fromRGBO(32,34,53, 1),
                         ),
 
-                        child: Center(
-                            child: Text("Form goes here", style: TextStyle(color: Colors.white))
+                        child: Container(
+                            margin: EdgeInsets.only(top: 32),
+                            padding: EdgeInsets.all(12),
+                            child: SingleChildScrollView(
+                                child: Column(
+                                  children: <Widget>[
+
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: data.length,
+                                      itemBuilder: (BuildContext context, int index){
+                                        return Container(
+
+                                          padding: EdgeInsets.all(8.0),
+                                          child: ListTile(
+                                            title: Text(data[index]["name"] , style: TextStyle(color: Colors.white),),
+                                          ),
+                                          decoration: BoxDecoration(
+                                              border: Border(bottom: BorderSide(width: 2.0, color: Colors.white10))
+                                          ),
+                                        );
+                                      },
+
+                                    )
+
+
+                                  ],
+                                )
+                            )
+
                         )
 
                     )
                 )
-
 
               ],
             )

@@ -31,7 +31,7 @@ class DistributionIndexPage extends StatelessWidget{
                       child: Column(
                         children: <Widget>[
                           Text("PHÂN PHỐI ONLINE", style: title),
-                          Text("Tạo lịch mới / phân phối theo lịch", style: content),
+                          Text("Tạo lịch mới / phân phối theo lịch", style: content, textAlign: TextAlign.center,),
                         ],
                       )
                   ),
@@ -47,7 +47,7 @@ class DistributionIndexPage extends StatelessWidget{
                       child: Column(
                         children: <Widget>[
                           Text("PHÂN PHỐI OFFLINE", style: title),
-                          Text("Tạo phân phối offline và đồng bộ dữ liệu khi có kết nối mạng", style: content),
+                          Text("Tạo phân phối offline và đồng bộ dữ liệu khi có kết nối mạng", style: content, textAlign: TextAlign.center,),
                         ],
                       )
                   ),

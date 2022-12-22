@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color.fromRGBO(32, 34, 53, 1),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromRGBO(32, 34, 53, 1),
+        )
       ),
 
       home: const Login(),

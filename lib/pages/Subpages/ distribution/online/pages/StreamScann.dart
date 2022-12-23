@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_qr_bar_scanner/flutter_qr_bar_scanner.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 
 class StreamScan extends StatefulWidget{
@@ -15,7 +14,7 @@ class _StreamScanState extends State<StreamScan>{
   List<String?> QRs = [];
   int QRCount = 0;
 
-  _qrCallback(String? code) {
+  _qrCallback(String? code) async {
 
     if( !QRs.contains(code) ){
       QRs.add(code);
@@ -108,10 +107,10 @@ class _StreamScanState extends State<StreamScan>{
                                 height: MediaQuery.of(context).size.height - 126,
                                 width: 500,
                                 child: QRBarScannerCamera(
-                                  onError: (context, error) => Text(
-                                    error.toString(),
-                                    style: TextStyle(color: Colors.red),
-                                  ),
+                                  // onError: (context, error) => Text(
+                                  //   error.toString(),
+                                  //   style: TextStyle(color: Colors.red),
+                                  // ),
                                   qrCodeCallback: (code) {
                                     _qrCallback(code);
                                   },

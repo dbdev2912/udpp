@@ -17,7 +17,7 @@ class DistributionIndexPage extends StatelessWidget{
           decoration: BoxDecoration(
             color: Color.fromRGBO(32, 34, 53, 1),
           ),
-          child: Expanded(
+          child: Container(
             child: Column(
               children: <Widget>[
                 InkWell(

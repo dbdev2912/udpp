@@ -1,28 +1,39 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_qr_bar_scanner/flutter_qr_bar_scanner.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 
-class RedisQRScan extends StatefulWidget{
-  const RedisQRScan({ Key? key, this.title }):super(key:key);
-  final title;
+class OfflineDistributionCascadeQRScan extends StatefulWidget{
+  const OfflineDistributionCascadeQRScan({ Key? key, required this.qr_amount}):super(key:key);
+  final qr_amount;
   @override
-  _RedisQRScanState createState() => _RedisQRScanState();
+  _OfflineDistributionCascadeQRScanState createState() => _OfflineDistributionCascadeQRScanState();
 }
 
-class _RedisQRScanState extends State<RedisQRScan>{
+class _OfflineDistributionCascadeQRScanState extends State<OfflineDistributionCascadeQRScan>{
   String? _qrInfo = 'Scan a QR/Bar code';
   bool _camState = false;
+  int QRCount = 0;
+  List<String?> QRs = [];
 
-  _qrCallback(String? code) async {
-    await FlutterQrReader.stop();
-    Navigator.pop(context, code);
+  _qrCallback(String? code) {
+
+    if( !QRs.contains(code) ){
+      QRs.add(code);
+      setState(() {
+        QRCount = QRCount - 1;
+      });
+
+      if( QRs.length == widget.qr_amount ){
+        Navigator.pop(context);
+      }
+    }
+    // setState(() {
+    //   // _camState = false;
+    //   _qrInfo = code;
+    // });
   }
 
 
   _scanCode() {
-
     setState(() {
       _camState = true;
     });
@@ -31,6 +42,7 @@ class _RedisQRScanState extends State<RedisQRScan>{
   @override
   void initState() {
     super.initState();
+    QRCount = widget.qr_amount;
     _scanCode();
   }
 
@@ -56,7 +68,7 @@ class _RedisQRScanState extends State<RedisQRScan>{
                         Container(
                             child: InkWell(
                               onTap: (){
-                                Navigator.pop(context);
+                                Navigator.pop(context, QRs);
                               },
                               child: Container(
                                   margin: EdgeInsets.all(8.0),
@@ -66,7 +78,7 @@ class _RedisQRScanState extends State<RedisQRScan>{
                         ),
                         Expanded(
                             child: Text(
-                              widget.title,
+                              "Quét QR để lưu dữ liệu",
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.white, fontSize: 18),
                             )
@@ -94,26 +106,29 @@ class _RedisQRScanState extends State<RedisQRScan>{
                         ),
                         child: Column(
                           children: <Widget>[
-                              Center(
+                            Center(
 
-                                child: SizedBox(
-                                  height: MediaQuery.of(context).size.height - 126,
-                                  width: 500,
-                                  child: QRBarScannerCamera(
-                                    // onError: (context, error) => Text(
-                                    //   error.toString(),
-                                    //   style: TextStyle(color: Colors.red),
-                                    // ),
-                                    qrCodeCallback: (code) {
-                                      _qrCallback(code);
-                                    },
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.height - 126,
+                                width: 500,
+                                child: QRBarScannerCamera(
+                                  onError: (context, error) => Text(
+                                    error.toString(),
+                                    style: TextStyle(color: Colors.red),
                                   ),
+                                  qrCodeCallback: (code) {
+                                    _qrCallback(code);
+                                  },
                                 ),
                               ),
+                            ),
+                            Positioned(
+                              child: Text(QRCount.toString(), style: TextStyle(color: Colors.white, fontSize: 32),),
+                              bottom: 20,
+                              left: 20,
+                            )
                           ],
                         )
-
-
 
                     )
                 )

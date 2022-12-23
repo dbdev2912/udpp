@@ -10,6 +10,7 @@ class OfflineDistribution extends StatelessWidget{
     );
     return Scaffold(
       body: SafeArea(
+
         child: Column(
           children: <Widget>[
             Container(

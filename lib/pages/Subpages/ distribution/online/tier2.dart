@@ -227,6 +227,7 @@ class _Tier2State extends State<Tier2>{
                                           TextFormField(
                                             controller: quantity_controller,
                                             style: content,
+                                            keyboardType: TextInputType.number,
                                             decoration: InputDecoration(
                                               hintText: "Nhập số lượng sản phẩm",
                                               hintStyle: hint,

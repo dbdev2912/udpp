@@ -48,7 +48,7 @@ class _LoginState extends State<Login>{
                     decoration: const BoxDecoration(
                         color: Color.fromRGBO(32, 34, 51, 1)
                     ),
-                    child: Expanded(
+                    child: Container(
                       child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,

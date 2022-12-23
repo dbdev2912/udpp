@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'OfflineDistributionCascadeQRScan.dart';
+
 class OfflineForm extends StatefulWidget{
   const OfflineForm({ Key? key }):super(key:key);
   @override
@@ -22,6 +24,11 @@ class _OfflineFormState extends State<OfflineForm>{
   final command_controller = TextEditingController();
   final note_controller = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    quantity_controller.text = "1";
+  }
 
   @override
   Widget build( BuildContext context ){
@@ -80,161 +87,165 @@ class _OfflineFormState extends State<OfflineForm>{
                         child: Container(
                             margin: EdgeInsets.only(top: 32),
                             padding: EdgeInsets.all(12),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  child: Column(
-                                    children: [
-                                      Row(
+                            child: SingleChildScrollView(
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      child: Column(
                                         children: [
-                                          Expanded(
-                                            child: RichText(
-                                              text: TextSpan(
-                                                  text: "Tên đợt phân phối offline",
-                                                  style: title,
-                                                  children: <TextSpan>[
-                                                    TextSpan( text: "*", style: TextStyle(color: Colors.red) )
-                                                  ]
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      TextFormField(
-                                        controller: name_controller,
-                                        style: content,
-                                        decoration: InputDecoration(
-                                            hintText: "Nhập tên đợt phân phối",
-                                            hintStyle: hint,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-
-                                Container(
-                                  margin: EdgeInsets.only(top: 24.0),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: RichText(
-                                              text: TextSpan(
-                                                  text: "Số lượng",
-                                                  style: title,
-                                                  children: <TextSpan>[
-                                                    TextSpan( text: "*", style: TextStyle(color: Colors.red) )
-                                                  ]
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      TextFormField(
-                                        controller: quantity_controller,
-                                        style: content,
-                                        decoration: InputDecoration(
-                                            hintText: "Nhập số lượng",
-                                            hintStyle: hint,
-
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-
-                                Container(
-                                  margin: EdgeInsets.only(top: 24.0),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: RichText(
-                                              text: TextSpan(
-                                                  text: "Lệnh phân phối",
-                                                  style: title,
-                                                  children: <TextSpan>[
-                                                    TextSpan( text: "*", style: TextStyle(color: Colors.red) )
-                                                  ]
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      TextFormField(
-                                        controller: command_controller,
-                                        style: content,
-                                        decoration: InputDecoration(
-                                          hintText: "Nhập lệnh phân phối",
-                                          hintStyle: hint,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-
-                                Container(
-                                  margin: EdgeInsets.only(top: 24.0),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: RichText(
-                                              text: TextSpan(
-                                                  text: "Ghi chú",
-                                                  style: title,
-                                                  children: <TextSpan>[
-                                                    TextSpan( text: "*", style: TextStyle(color: Colors.red) )
-                                                  ]
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      TextFormField(
-                                        controller: note_controller,
-                                        style: content,
-                                        decoration: InputDecoration(
-                                          hintText: "Nhập ghi chú cho đợt phân phối",
-                                          hintStyle: hint,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-
-                                Container(
-                                    margin: const EdgeInsets.only(top: 8.0, bottom: 16.0),
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(12),
-                                        child: ElevatedButton(
-                                          onPressed: (){
-
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(24.0),
-                                            ),
-                                            backgroundColor: const Color.fromRGBO(27, 186, 221, 1),
-                                            minimumSize: const Size.fromHeight(50),
-                                          ),
-                                          child: const Text(
-                                              "Tiếp tục",
-                                              style: TextStyle(
-                                                fontSize: 16.0,
-                                                color: Color.fromRGBO(0, 0, 0, 1),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                      text: "Tên đợt phân phối offline",
+                                                      style: title,
+                                                      children: <TextSpan>[
+                                                        TextSpan( text: "*", style: TextStyle(color: Colors.red) )
+                                                      ]
+                                                  ),
+                                                ),
                                               )
+                                            ],
                                           ),
+                                          TextFormField(
+                                            controller: name_controller,
+                                            style: content,
+                                            decoration: InputDecoration(
+                                              hintText: "Nhập tên đợt phân phối",
+                                              hintStyle: hint,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+
+                                    Container(
+                                      margin: EdgeInsets.only(top: 24.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                      text: "Số lượng",
+                                                      style: title,
+                                                      children: <TextSpan>[
+                                                        TextSpan( text: "*", style: TextStyle(color: Colors.red) )
+                                                      ]
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          TextFormField(
+                                            controller: quantity_controller,
+                                            keyboardType: TextInputType.number,
+                                            style: content,
+                                            decoration: InputDecoration(
+                                              hintText: "Nhập số lượng",
+                                              hintStyle: hint,
+
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+
+                                    Container(
+                                      margin: EdgeInsets.only(top: 24.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                      text: "Lệnh phân phối",
+                                                      style: title,
+                                                      children: <TextSpan>[
+                                                        TextSpan( text: "*", style: TextStyle(color: Colors.red) )
+                                                      ]
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          TextFormField(
+                                            controller: command_controller,
+                                            style: content,
+                                            decoration: InputDecoration(
+                                              hintText: "Nhập lệnh phân phối",
+                                              hintStyle: hint,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+
+                                    Container(
+                                      margin: EdgeInsets.only(top: 24.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                      text: "Ghi chú",
+                                                      style: title,
+                                                      children: <TextSpan>[
+                                                        TextSpan( text: "*", style: TextStyle(color: Colors.red) )
+                                                      ]
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          TextFormField(
+                                            controller: note_controller,
+                                            style: content,
+                                            decoration: InputDecoration(
+                                              hintText: "Nhập ghi chú cho đợt phân phối",
+                                              hintStyle: hint,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+
+                                    Container(
+                                        margin: const EdgeInsets.only(top: 8.0, bottom: 16.0),
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(12),
+                                            child: ElevatedButton(
+                                              onPressed: (){
+                                                Navigator.of(context).push( MaterialPageRoute(builder: (context) => OfflineDistributionCascadeQRScan( qr_amount: int.parse(quantity_controller.text), )) );
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(24.0),
+                                                ),
+                                                backgroundColor: const Color.fromRGBO(27, 186, 221, 1),
+                                                minimumSize: const Size.fromHeight(50),
+                                              ),
+                                              child: const Text(
+                                                  "Tiếp tục",
+                                                  style: TextStyle(
+                                                    fontSize: 16.0,
+                                                    color: Color.fromRGBO(0, 0, 0, 1),
+                                                  )
+                                              ),
+                                            )
                                         )
                                     )
+
+
+                                  ],
                                 )
-
-
-                              ],
                             )
+
                         )
 
                     )

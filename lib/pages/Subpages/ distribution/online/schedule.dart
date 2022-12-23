@@ -140,6 +140,9 @@ class _ScheduleState extends State<Schedule>{
                                                           children: [
                                                             Expanded(
                                                               child: Text("Phân phối" ,style: TextStyle(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.bold ),),
+                                                            ),
+                                                            Expanded(
+                                                              child: Text("Hủy bỏ" ,style: TextStyle(color: Colors.red, fontSize: 14.0, fontWeight: FontWeight.bold ),),
                                                             )
                                                           ],
                                                         )
